@@ -1,0 +1,16 @@
+diff -urNad linux-2.6.34-rc5/include/linux/timex.h linux-2.6.34-rc5-bb/include/linux/timex.h
+--- linux-2.6.34-rc5/include/linux/timex.h	2010-04-19 20:29:56.000000000 -0300
++++ linux-2.6.34-rc5-bb/include/linux/timex.h	2010-04-24 17:53:14.563826616 -0300
+@@ -276,8 +276,12 @@
+ 
+ int read_current_timer(unsigned long *timer_val);
+ 
++#ifdef CONFIG_X86_RDC321X
++#define PIT_TICK_RATE 1041816ul
++#else
+ /* The clock frequency of the i8253/i8254 PIT */
+ #define PIT_TICK_RATE 1193182ul
++#endif
+ 
+ #endif /* KERNEL */
+ 

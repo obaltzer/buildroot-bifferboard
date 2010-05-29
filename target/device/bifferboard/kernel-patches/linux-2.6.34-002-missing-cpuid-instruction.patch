@@ -1,0 +1,16 @@
+diff -urNad linux-2.6.34-rc5/arch/x86/include/asm/virtext.h linux-2.6.34-rc5-bb/arch/x86/include/asm/virtext.h
+--- linux-2.6.34-rc5/arch/x86/include/asm/virtext.h	2010-04-19 20:29:56.000000000 -0300
++++ linux-2.6.34-rc5-bb/arch/x86/include/asm/virtext.h	2010-04-24 17:45:59.233827103 -0300
+@@ -27,8 +27,12 @@
+ 
+ static inline int cpu_has_vmx(void)
+ {
++#ifdef CONFIG_X86_RDC321X
++	return 0;
++#else
+ 	unsigned long ecx = cpuid_ecx(1);
+ 	return test_bit(5, &ecx); /* CPUID.1:ECX.VMX[bit 5] -> VT */
++#endif
+ }
+ 
+ 

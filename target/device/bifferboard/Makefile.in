@@ -1,0 +1,8 @@
+ifeq ($(BR2_TARGET_BIFFERBOARD),y)
+
+BOARD_NAME:=$(call qstrip,$(BR2_BOARD_NAME))
+BOARD_PATH:=$(call qstrip,$(BR2_BOARD_PATH))
+
+TARGET_SKELETON=$(BOARD_PATH)/target_skeleton
+
+endif

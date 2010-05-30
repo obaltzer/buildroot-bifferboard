@@ -1,0 +1,9 @@
+config BR2_PACKAGE_UVCCAPTURE
+        bool "uvccapture"
+	select BR2_PACKAGE_JPEG # libjpeg is required
+        help
+          The purpose of this software is to capture an image from a USB
+          webcam at a specified interval, and save it to a JPEG file, no
+          other formats are supported.
+
+          http://staticwave.ca/source/uvccapture/

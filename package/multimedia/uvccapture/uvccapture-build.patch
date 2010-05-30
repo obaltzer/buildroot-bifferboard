@@ -1,0 +1,58 @@
+diff -urNad uvccapture-0.5.orig/v4l2uvc.h uvccapture-0.5/v4l2uvc.h
+--- uvccapture-0.5.orig/v4l2uvc.h	2008-07-31 23:26:18.000000000 -0300
++++ uvccapture-0.5/v4l2uvc.h	2010-05-28 23:32:32.408252008 -0300
+@@ -1,4 +1,5 @@
+-
++#ifndef __V4L2UVC_H
++#define __V4L2UVC_H
+ /*******************************************************************************
+ #             uvccapture: USB UVC Video Class Snapshot Software                #
+ #This package work with the Logitech UVC based webcams with the mjpeg feature  #
+@@ -25,16 +26,41 @@
+ #define NB_BUFFER 16
+ #define DHT_SIZE 420
+ 
++#ifndef V4L2_CID_BACKLIGHT_COMPENSATION
+ #define V4L2_CID_BACKLIGHT_COMPENSATION	(V4L2_CID_PRIVATE_BASE+0)
++#endif
++
++#ifndef V4L2_CID_POWER_LINE_FREQUENCY
+ #define V4L2_CID_POWER_LINE_FREQUENCY	(V4L2_CID_PRIVATE_BASE+1)
++#endif
++
++#ifndef V4L2_CID_SHARPNESS
+ #define V4L2_CID_SHARPNESS		(V4L2_CID_PRIVATE_BASE+2)
++#endif
++
++#ifndef V4L2_CID_HUE_AUTO
+ #define V4L2_CID_HUE_AUTO		(V4L2_CID_PRIVATE_BASE+3)
++#endif
++
++#ifndef V4L2_CID_FOCUS_AUTO
+ #define V4L2_CID_FOCUS_AUTO		(V4L2_CID_PRIVATE_BASE+4)
++#endif
++
++#ifndef V4L2_CID_FOCUS_ABSOLUTE
+ #define V4L2_CID_FOCUS_ABSOLUTE		(V4L2_CID_PRIVATE_BASE+5)
++#endif
++
++#ifndef V4L2_CID_FOCUS_RELATIVE
+ #define V4L2_CID_FOCUS_RELATIVE		(V4L2_CID_PRIVATE_BASE+6)
++#endif
+ 
++#ifndef V4L2_CID_PANTILT_RELATIVE
+ #define V4L2_CID_PANTILT_RELATIVE	(V4L2_CID_PRIVATE_BASE+7)
++#endif
++
++#ifndef V4L2_CID_PANTILT_RESET
+ #define V4L2_CID_PANTILT_RESET		(V4L2_CID_PRIVATE_BASE+8)
++#endif
+ 
+ struct vdIn {
+   int fd;
+@@ -76,3 +102,5 @@
+ int v4l2ResetPanTilt (struct vdIn *vd, int pantilt);
+ int v4L2UpDownPan (struct vdIn *vd, short inc);
+ int v4L2UpDownTilt (struct vdIn *vd, short inc);
++
++#endif

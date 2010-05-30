@@ -1,0 +1,7 @@
+config BR2_PACKAGE_MJPG_STREAMER
+	bool "mjpg-streamer"
+	select BR2_PACKAGE_JPEG # libjpeg is required
+	help
+	  A simpler webcam streamer.
+
+	  http://sourceforge.net/projects/mjpg-streamer/

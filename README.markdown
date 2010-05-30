@@ -39,41 +39,49 @@ packages.
 Getting Started
 ---------------
 
-1. Clone the repository:
+Clone the repository:
 
-        $ git clone git://github.com/nobits/buildroot-bifferboard.git
+    $ git clone git://github.com/nobits/buildroot-bifferboard.git
 
-2. Initial configuration using defaults. The following default 
-   configurations are currently available:
+Or download a snapshot tarball:
+
+    $ wget http://github.com/nobits/buildroot-bifferboard/tarball/master
+    $ tar xfz nobits-buildroot-bifferboard-*.tar.gz
+
+Initial configuration using defaults. The following default configurations
+are currently available:
    
-   `bifferboard_minimal_defconfig`: A minimal configuration with a default
-   Busybox configuration and no additional packages.
+  `bifferboard_minimal_defconfig`: A minimal configuration with a default
+  Busybox configuration and no additional packages.
    
-   `bifferboard_ssh_defconfig`: A minimal configuration + SSH server and
-   the default 'root' password set to 'bifferboard.
+  `bifferboard_ssh_defconfig`: A minimal configuration + SSH server and
+  the default 'root' password set to 'bifferboard.
  
-   To use a default configuration, execute the following:
+To use a default configuration, execute the following:
 
-        $ cd buildroot-bifferboard
-        $ make bifferboard_ssh_defconfig
+    $ cd buildroot-bifferboard
+    $ make bifferboard_ssh_defconfig
 
-3. Optionally customize the configuration:
+Optionally customize the configuration. See the [Buildroot Documentation][]
+for details:
 
-        $ make menuconfig
+    $ make menuconfig
 
-4. Build the target kernel image and root filesystem image:
+Build the target kernel image and root filesystem image:
 
-        $ make
+    $ make
 
-5. Upload the kernel image to the Bifferboard:
+Upload the kernel image to the Bifferboard:
 
-        $ sudo python target/device/bifferboard/tools/bb_eth_upload8.py \
-              eth0 <BIFFERBOARD_MAC_ADDRESS> output/images/bzImage
+    $ sudo python target/device/bifferboard/tools/bb_eth_upload8.py \
+          eth0 <BIFFERBOARD_MAC_ADDRESS> output/images/bzImage
 
-   Now power up your Bifferboard and ensure it is connected to the network.
+Now power up your Bifferboard and ensure it is connected to the network.
 
-6. Copy the root filesystem image to a USB stick (`/dev/sdb1`):
+Copy the root filesystem image to a USB stick (`/dev/sdb1`):
 
-        $ sudo dd if=output/images/rootfs.ext2 of=/dev/sdb1
+    $ sudo dd if=output/images/rootfs.ext2 of=/dev/sdb1
 
-7. Plug the USB stick into the Bifferboard and reboot.
+Plug the USB stick into the Bifferboard and reboot.
+
+[Buildroot Documentation]: http://buildroot.uclibc.org/buildroot.html

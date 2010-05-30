@@ -2,11 +2,12 @@
 
 	Fixes all over the tree.
 
-	Updated/fixed packages: coreutils, hal, libcap, ncftp,
-	xserver_xorg-server
+	Updated/fixed packages: coreutils, hal, libcap,
+	lockfile-progs, ncftp, xserver_xorg-server
 
 	Issues resolved (http://bugs.uclibc.org):
 
+	#1789: binutils fails to build for i386
 	#1843: Fix libcap build failure
 
 2010.05-rc3, Released May 27th, 2010:

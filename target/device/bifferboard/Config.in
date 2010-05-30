@@ -2,7 +2,7 @@ if ! BR2_i386 || ! BR2_x86_i486 || BR2_DOWNLOAD_LINUX26_VERSION != "2.6.34"
 	comment "Bifferboard requires i486 and kernel version 2.6.34"
 endif
 
-config BR2_TARGET_BIFFERBOARD
+menuconfig BR2_TARGET_BIFFERBOARD
 	bool "Support for Bifferboard"
 	depends on BR2_i386 && BR2_x86_i486
 	depends on BR2_DOWNLOAD_LINUX26_VERSION	= "2.6.34"
@@ -12,7 +12,23 @@ config BR2_TARGET_BIFFERBOARD
 	  http://bifferos.bizhat.com/
 	
 if BR2_TARGET_BIFFERBOARD
-	
+
+config BR2_TARGET_BIFFERBOARD_SET_PASSWORD
+	bool "Set a default password"
+	depends on BR2_TARGET_BIFFERBOARD
+	default n
+	help
+	  Enable this if you want to set a default password on your
+	  system. This is useful when only remote access via SSH is
+	  possible.
+
+config BR2_TARGET_BIFFERBOARD_DEFAULT_PASSWORD
+	string "Default password"
+	depends on BR2_TARGET_BIFFERBOARD_SET_PASSWORD
+	default "bifferboard"
+	help
+	  Enter the default password here.
+
 config BR2_BOARD_NAME
 	string
 	default "bifferboard"
@@ -20,5 +36,17 @@ config BR2_BOARD_NAME
 config BR2_BOARD_PATH
 	string
 	default "target/device/$(BR2_BOARD_NAME)"
+
+config BR2_TARGET_GENERIC_HOSTNAME
+	string
+	default "bifferboard"
+
+config BR2_TARGET_GENERIC_ISSUE
+	string
+	default "Welcome"
+
+config BR2_TARGET_GENERIC_GETTY
+	bool
+	default y
 
 endif

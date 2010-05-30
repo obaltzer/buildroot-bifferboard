@@ -5,4 +5,25 @@ BOARD_PATH:=$(call qstrip,$(BR2_BOARD_PATH))
 
 TARGET_SKELETON=$(BOARD_PATH)/target_skeleton
 
+ifeq ($(BR2_TARGET_BIFFERBOARD_SET_PASSWORD),y)
+ifneq ($(BR2_TARGET_BIFFERBOARD_DEFAULT_PASSWORD),)
+BIFFERBOARD_CRYPTED_PASSWORD:=\
+	$(shell echo $(BR2_TARGET_BIFFERBOARD_DEFAULT_PASSWORD) \
+		| openssl passwd -stdin	-1)
+TARGETS += target-set-password
+
+target-set-password:
+	$(SED) '/^root:/s~^root:[^:]*:~root:$(BIFFERBOARD_CRYPTED_PASSWORD):~' \
+		$(TARGET_DIR)/etc/shadow
+endif
+endif
+
+target-dhcp-hostname:
+	$(SED) '/# DHCP_HOSTNAME$$/s~^.*#~\thostname $(TARGET_GENERIC_HOSTNAME) #~' \
+		$(TARGET_DIR)/etc/network/interfaces
+
+ifneq ($(TARGET_GENERIC_HOSTNAME),)
+TARGETS += target-dhcp-hostname
+endif
+
 endif

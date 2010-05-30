@@ -46,10 +46,11 @@ Getting Started
 2. Initial configuration using defaults. The following default 
    configurations are currently available:
    
-   * `bifferboard_minimal_defconfig`: A minimal configuration with a default
-     Busybox configuration and no additional packages.
-   * `bifferboard_ssh_defconfig`: A minimal configuration + SSH server and
-     the default 'root' password set to 'bifferboard.
+   `bifferboard_minimal_defconfig`: A minimal configuration with a default
+   Busybox configuration and no additional packages.
+   
+   `bifferboard_ssh_defconfig`: A minimal configuration + SSH server and
+   the default 'root' password set to 'bifferboard.
  
    To use a default configuration, execute the following:
 
@@ -69,7 +70,7 @@ Getting Started
         $ sudo python target/device/bifferboard/tools/bb_eth_upload8.py \
               eth0 <BIFFERBOARD_MAC_ADDRESS> output/images/bzImage
 
-  Now power up your Bifferboard and ensure it is connected to the network.
+   Now power up your Bifferboard and ensure it is connected to the network.
 
 6. Copy the root filesystem image to a USB stick (`/dev/sdb1`):
 
